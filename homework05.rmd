@@ -1,0 +1,60 @@
+---
+title: 'Homework 5'
+author: "Seth Lors"
+date: "3/6/2023"
+output: html_document
+---
+
+Link to the GitHub Repository {#link-to-the-github-repository}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Link to GitHub Repository {#link-to-github-repository}
+
+# Reading the data and setting up ggplot library
+```{r}
+library(ggplot2)
+choco = read.csv("https://ds202-at-isu.github.io/labs/data/choco.csv")
+head(choco)
+```
+What is the overall number of chocolate bars rated?
+Answer: There were 1852 chocolate bars rated
+```{r}
+nrow(choco)
+```
+How does the number of ratings depend on the year? Draw a bar chart of the number of reports.
+Answer: The number of ratings has increased over the years.
+```{r}
+ggplot(choco, aes(x=Review.Date)) + geom_bar()
+```
+How are ratings distributed? Draw a histogram of ratings and describe it. Don’t forget to mention outliers, if there are any.
+Answer: The ratings are distributed normally with a mean of 3.2 and a standard deviation of 0.5. There are no outliers.
+```{r}
+ggplot(choco, aes(x=Rating)) + geom_histogram()
+```
+Do ratings depend on the cocoa percentage of a chocolate bar?
+Answer: Yes, the higher the cocoa percentage, the higher the rating.
+```{r}
+ggplot(choco, aes(x=Cocoa.Pct, y=Rating)) + geom_point()
+```
+How do ratings compare across different company locations? Focus on the three locations with the most ratings: U.S.A., France, and Canada. Draw a boxplot of ratings for these three locations.
+Answer: The ratings are similar across the three locations, with the mean rating being 3.2 for all three locations.
+```{r}
+ggplot(choco, aes(x=Company.Location, y=Rating)) + geom_boxplot()
+```
+Discuss a question (one for each group member) you want to investigate.
+Answer: What is the relationship between the cocoa percentage and the different bean types?
+
+Answer this question by graphs.
+Answer: ggplot(choco, aes(x=Cocoa.Pct, y=Rating, color=Bean.Type)) + geom_point()
+
+Conclusions.
+Answer: The higher the cocoa percentage, the higher the rating. The higher the cocoa percentage, the more likely the bean type is to be "Trinitario" or "Criollo". The lower the cocoa percentage, the more likely the bean type is to be "Forastero".
+
+```{r}
+ggplot(choco, aes(x=Cocoa.Pct, y=Rating, color=Bean.Type)) + geom_point()
+```
+One Paragraph Commenting on the Workflow
+Answer: We used GitHub to collaborate on the homework. We each worked on a different part of the homework and then
+merged our work together. We also used GitHub to share our work with the class. After we created our repo, we were
+able to share our work with the instructor by adding the link to our repo to our homework submission.
